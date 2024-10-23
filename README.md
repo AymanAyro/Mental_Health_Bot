@@ -219,7 +219,9 @@ def mental_health_chatbot():
 ## **Logging and Tracking**:
 
 - Uses `MLflow` to log parameters and model interactions for tracking performance and improvements.
-- 
+  
+  ![image](https://github.com/user-attachments/assets/613cdd34-a9a6-4638-a18b-e5121e9791e7)
+
   ![image](https://github.com/user-attachments/assets/c471c060-f1af-42d6-807e-5597bc624ce3)
   
   ![image](https://github.com/user-attachments/assets/adbf563b-6f3f-410a-bc62-f460fcf0f4f1)
