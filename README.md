@@ -265,7 +265,7 @@ def mental_health_chatbot():
 - Further fine-tuning the BERT model on domain-specific mental health datasets can improve the chatbot's understanding of sensitive conversations. Fine-tuning can also enhance the model's ability to detect subtle differences in user intent and sentiment.
 - Implementing a hyperparameter search for the best model configurations (such as learning rate, batch size, etc.) could lead to more optimal performance and reduce the overall evaluation loss.
 
-***Adding More Features***:
+3. ***Adding More Features***:
 
 - Context Awareness: Improving the bot’s ability to maintain a multi-turn, context-aware conversation. Currently, the chatbot processes each user input individually, but enhancing the context handling will allow for more coherent conversations across multiple exchanges.
 - Emotion Recognition: Adding facial expression analysis (using computer vision) or voice sentiment analysis to further refine the user's emotional state could help deliver even more personalized responses.
