@@ -253,7 +253,24 @@ def mental_health_chatbot():
 
 ![image](https://github.com/user-attachments/assets/a08fc2ec-55da-4077-a29f-6b2fb4e6aac8)
 
+# **Future Work**:
 
+1. ***Utilizing More Data***:
+
+- One of the key areas for improvement is expanding the dataset by incorporating additional data sources. This can include gathering more conversational data relevant to mental health, as well as more diverse user inputs. Larger datasets will allow the model to generalize better across different conversation contexts and improve response accuracy.
+- Leveraging data augmentation techniques for text, such as paraphrasing or syntactic variations, could also help increase the training data without collecting entirely new data.
+  
+2. ***Fine-Tuning the Model***:
+
+- Further fine-tuning the BERT model on domain-specific mental health datasets can improve the chatbot's understanding of sensitive conversations. Fine-tuning can also enhance the model's ability to detect subtle differences in user intent and sentiment.
+- Implementing a hyperparameter search for the best model configurations (such as learning rate, batch size, etc.) could lead to more optimal performance and reduce the overall evaluation loss.
+
+***Adding More Features***:
+
+- Context Awareness: Improving the bot’s ability to maintain a multi-turn, context-aware conversation. Currently, the chatbot processes each user input individually, but enhancing the context handling will allow for more coherent conversations across multiple exchanges.
+- Emotion Recognition: Adding facial expression analysis (using computer vision) or voice sentiment analysis to further refine the user's emotional state could help deliver even more personalized responses.
+- Recommendation System: Including personalized recommendations for mental health resources or exercises based on detected emotions and intent could be another powerful feature.
+- Multi-Language Support: Extending the chatbot’s capabilities to handle conversations in multiple languages, allowing it to cater to a broader audience globally.
 
 # **Conclusion**:
 - By utilizing advanced NLP techniques and pre-trained models like BERT, Pandora is capable of understanding user queries related to mental health and providing helpful responses. This project not only demonstrates the application of machine learning in real-world scenarios but also addresses the significant need for accessible mental health support. This implementation provides a comprehensive framework for creating a mental health chatbot that leverages advanced NLP techniques, ensuring a supportive and interactive experience for users.
