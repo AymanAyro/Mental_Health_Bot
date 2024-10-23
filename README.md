@@ -5,9 +5,12 @@ The goal of this project is to develop a mental health chatbot named Pandora tha
 
 ## **Usage Instructions**:
 - Run the Application: To launch the chatbot application, navigate to the project directory and use the following command in the terminal:
+ 
 `streamlit run app.py`
 - Installing Required Packages: Install the required Python libraries listed in requirements.txt by running:
+  
 `pip install -r requirements.txt`
+
 Ensure all dependencies like Transformers, Azure Text Analytics, Streamlit, PyTorch, and MLflow are correctly installed for the app to function.
 
 ## **Credits**:
