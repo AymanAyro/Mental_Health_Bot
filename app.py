@@ -8,7 +8,6 @@ import gdown
 import json
 import mlflow
 import mlflow.pytorch
-import secrets
 
 # Azure Text Analytics credentials
 key = "3d2b9f93f2514509acf274e8dc77f04e"
@@ -29,7 +28,6 @@ TOKENIZER_FILES = {
     'vocab.txt': 'https://drive.google.com/uc?id=1LuWjmJHwkiY8hASpaz7BCbabE066Xr9j',
     'special_tokens_map.json': 'https://drive.google.com/uc?id=1Zy5j5zyKP2W-xRS6rzaJS4keUNn_SMNC'
 }
-
 
 # Function to download files from Google Drive
 def download_file_from_drive(drive_url, output_path):
@@ -86,7 +84,7 @@ def get_response(intent, sentiment):
 
 # Initialize Streamlit app
 st.title("Mental Health Chatbot")
-st.write("A chatbot powered by Azure Text Analytics and a BERT model.")
+st.write("A conversational AI built with Flask that provides emotional support through NLP. It utilizes a BERT model for intent recognition and Azure Text Analytics for sentiment analysis. The bot maintains context-aware conversations and logs interactions using MLflow, ensuring a personalized experience for users seeking mental health insights.")
 
 # Session state to store conversation history
 if 'conversation_history' not in st.session_state:
@@ -105,8 +103,12 @@ if user_message:
     # Get bot response
     response = get_response(intent, sentiment)
 
-    # Append conversation to history
-    st.session_state['conversation_history'].append({'user': user_message, 'bot': response})
+    # Append conversation to history, including the intent
+    st.session_state['conversation_history'].append({
+        'user': user_message,
+        'bot': response,
+        'intent': intent
+    })
 
     # Log with MLflow
     experiment_name = 'Mental Health Chatbot'
@@ -121,7 +123,7 @@ if user_message:
         mlflow.log_param("sentiment", sentiment)
         mlflow.pytorch.log_model(model, "bert_model")
 
-# Display conversation history
+# Display conversation history with intents
 for chat in st.session_state['conversation_history']:
     st.write(f"You: {chat['user']}")
-    st.write(f"Bot: {chat['bot']}")
+    st.write(f"Bot: {chat['bot']} (Intent: {chat['intent']})")
