@@ -1,5 +1,7 @@
 # **Project Title: Mental Health Chatbot - Pandora**
 
+![image](https://github.com/user-attachments/assets/f421eb8a-6016-4879-8090-bfefe0e67ca3)
+
 ## **Objective**:
 The goal of this project is to develop a mental health chatbot named Pandora that can interact with users and provide relevant responses based on their queries. The chatbot utilizes natural language processing (NLP) techniques to understand user inputs and classify them into specific intents, allowing it to deliver contextually appropriate responses.
 
