@@ -84,7 +84,7 @@ def get_response(intent, sentiment):
 
 # Initialize Streamlit app
 st.title("Mental Health Chatbot")
-st.write("A conversational AI built with Flask that provides emotional support through NLP. It utilizes a BERT model for intent recognition and Azure Text Analytics for sentiment analysis. The bot maintains context-aware conversations and logs interactions using MLflow, ensuring a personalized experience for users seeking mental health insights.")
+st.write("A conversational AI built with Streamlit & Azure that provides emotional support through NLP. It utilizes a BERT model for intent recognition and Azure Text Analytics for sentiment analysis. The bot maintains context-aware conversations and logs interactions using MLflow, ensuring a personalized experience for users seeking mental health insights.")
 
 # Session state to store conversation history
 if 'conversation_history' not in st.session_state:
