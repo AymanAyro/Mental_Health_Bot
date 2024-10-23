@@ -1,0 +1,6 @@
+flask
+transformers
+torch
+azure-ai-textanalytics
+mlflow
+gdown
