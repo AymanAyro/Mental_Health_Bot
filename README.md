@@ -254,4 +254,4 @@ def mental_health_chatbot():
 
 
 # **Conclusion**:
-By utilizing advanced NLP techniques and pre-trained models like BERT, Pandora is capable of understanding user queries related to mental health and providing helpful responses. This project not only demonstrates the application of machine learning in real-world scenarios but also addresses the significant need for accessible mental health support. This implementation provides a comprehensive framework for creating a mental health chatbot that leverages advanced NLP techniques, ensuring a supportive and interactive experience for users.
+- By utilizing advanced NLP techniques and pre-trained models like BERT, Pandora is capable of understanding user queries related to mental health and providing helpful responses. This project not only demonstrates the application of machine learning in real-world scenarios but also addresses the significant need for accessible mental health support. This implementation provides a comprehensive framework for creating a mental health chatbot that leverages advanced NLP techniques, ensuring a supportive and interactive experience for users.
