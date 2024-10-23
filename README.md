@@ -100,7 +100,7 @@ training_args = TrainingArguments(
     weight_decay=0.001,
 )
 ```
-- Evaluation Loss: The model achieved an evaluation loss of 2.015 at the end of training.
+- Evaluation Loss: The model achieved an evaluation loss of *2.016* at the end of training.
   ![image](https://github.com/user-attachments/assets/ff10ae26-71cb-435a-8e41-3ed3b9272479)
 
 8. ***Intent Prediction***:
