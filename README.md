@@ -3,6 +3,17 @@
 ## **Objective**:
 The goal of this project is to develop a mental health chatbot named Pandora that can interact with users and provide relevant responses based on their queries. The chatbot utilizes natural language processing (NLP) techniques to understand user inputs and classify them into specific intents, allowing it to deliver contextually appropriate responses.
 
+## **Usage Instructions**:
+- Run the Application: To launch the chatbot application, navigate to the project directory and use the following command in the terminal:
+`streamlit run app.py`
+- Installing Required Packages: Install the required Python libraries listed in requirements.txt by running:
+`pip install -r requirements.txt`
+Ensure all dependencies like Transformers, Azure Text Analytics, Streamlit, PyTorch, and MLflow are correctly installed for the app to function.
+
+## **Credits**:
+- The intent dataset used for training the chatbot is available on Kaggle:
+ [Kaggle Dataset for Mental Health Chatbot]([https://www.kaggle.com/datasets](https://www.kaggle.com/datasets/elvis23/mental-health-conversational-data))
+  
 ### **Project Overview**:
 
 1. ***Data Preparation***:
