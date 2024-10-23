@@ -181,6 +181,7 @@ def mental_health_chatbot():
         # Display the chatbot response
         print(f"\nPandora: {response}")
 ```
+![image](https://github.com/user-attachments/assets/c1a8a686-bbd8-4723-a7e5-36f205931a28)
 
 # **Implementation**:
 
