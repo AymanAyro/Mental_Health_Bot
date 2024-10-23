@@ -14,6 +14,8 @@ import secrets
 # Initialize Flask app
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
+# Configure server-side session storage (in a file system)
+app.config['SESSION_TYPE'] = 'filesystem'
 
 # Enable Flask session (for context-aware responses)
 app.secret_key = secrets.token_hex(16)  # Generates a random secret key
@@ -96,11 +98,12 @@ def get_response(intent, sentiment):
             return f"{intent_data['responses'][0]} (Sentiment: {sentiment})"
     return "Sorry, I don't understand."
 
-# Chatbot API route
+
 @app.route('/chat', methods=['POST'])
 def chat():
     print("Chat endpoint was called")
-    # Initialize session history if not present
+
+    # Ensure session history is initialized correctly
     if 'conversation_history' not in session:
         session['conversation_history'] = []
 
@@ -117,17 +120,19 @@ def chat():
     # Get the bot's response based on the intent
     response = get_response(intent, sentiment)
 
-    # Store the user's message and the bot's response in the session (context-aware)
+    # Append the conversation to the history
     session['conversation_history'].append({'user': user_message, 'bot': response})
 
+    # Make sure the session gets modified to retain the history
+    session.modified = True
+
     # Ensure MLflow experiment is created or set it if it exists
-    # set url to mlflow server
-    
     experiment_name = 'Mental Health Chatbot'
     if not mlflow.get_experiment_by_name(experiment_name):
         mlflow.create_experiment(experiment_name)
     mlflow.set_experiment(experiment_name)
 
+    mlflow.autolog()
     # Log model interactions with MLflow
     with mlflow.start_run():
         mlflow.log_param("input_text", user_message)
@@ -135,9 +140,10 @@ def chat():
         mlflow.log_param("sentiment", sentiment)
         mlflow.pytorch.log_model(model, "bert_model")
 
+    # Return the bot's response and full conversation history
     return jsonify({
         "response": response,
-        "history": session['conversation_history']
+        "history": session['conversation_history']  # Returns the full history
     })
 
 # Run the Flask app
