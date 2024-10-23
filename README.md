@@ -5,17 +5,17 @@ The goal of this project is to develop a mental health chatbot named Pandora tha
 
 ### **Project Overview**:
 
-1. Data Preparation:
+1. ***Data Preparation***:
 
-- Load the intents from a `JSON` file (intents.json) that contains various user inputs and corresponding responses.
+- Load the intents from a `JSON` file (intents)json) that contains various user inputs and corresponding responses)
 - Extract patterns (user inputs) and responses, preparing them for further processing.
 
-2. Text Preprocessing:
+2. ***Text Preprocessing***:
 
 - Utilize the `nltk` library to tokenize and clean the text data. This involves converting the text to lowercase, removing punctuation, and eliminating stopwords.
 - Additionally, employ the `spaCy` library for lemmatization, ensuring that words are reduced to their base forms to enhance the model's understanding of the language.
   
-3. Data Analysis and Visualization:
+3. ***Data Analysis and Visualization***:
 
 - Analyze the distribution of patterns across different intents and visualize this distribution using bar charts.
   
@@ -34,7 +34,7 @@ The goal of this project is to develop a mental health chatbot named Pandora tha
 
 ![image](https://github.com/user-attachments/assets/730daa87-b887-4756-a302-e5acb995979f)
 
-4. Model Preparation:
+4. ***Model Preparation***:
 
 - Convert the textual data into numeric labels for model training, mapping each intent to a unique identifier.
 - Split the data into training and validation sets to evaluate model performance.
@@ -68,15 +68,15 @@ train_encodings = tokenize_data(train_texts)
 val_encodings = tokenize_data(val_texts)
 ```
 
-5. Tokenization with BERT:
+5. ***Tokenization with BERT***:
 
 - Leverage the BERT tokenizer to prepare the text data for model input. This process involves padding, truncation, and returning tensors suitable for the model.
 
-6. Dataset Creation:
+6. ***Dataset Creation***:
 
 - Define a custom dataset class to facilitate loading the training and validation data into the `PyTorch` framework.
 
-7. Model Training:
+7. ***Model Training***:
 
 - Instantiate a BERT model specifically designed for sequence classification.
 - Hyperparameters Used:
@@ -101,11 +101,9 @@ training_args = TrainingArguments(
 )
 ```
 - Evaluation Loss: The model achieved an evaluation loss of 2.015 at the end of training.
-  ![eval_loss VS step](https://github.com/user-attachments/assets/bfe3da08-ef74-4335-9217-11c1e7a141a3)
+  ![image](https://github.com/user-attachments/assets/ff10ae26-71cb-435a-8e41-3ed3b9272479)
 
-
-
-8. Intent Prediction:
+8. ***Intent Prediction***:
 
 - Implement a function to predict user intent by tokenizing the input text and using the trained model to generate predictions.
 Convert the predicted numeric label back to the corresponding string tag.
@@ -129,7 +127,7 @@ def predict_intent(text):
     return predicted_intent
 ```
 
-9. Response Generation:
+9. ***Response Generation***:
 
 - Create a response function that retrieves an appropriate response from the intents based on the predicted user intent.
 ```
@@ -140,7 +138,7 @@ def get_response(intent):
     return "Sorry, I don't understand."
 ```
 
-10. Chatbot Interaction:
+10. ***Chatbot Interaction***:
 
 - Develop an interactive loop for user engagement where users can input their queries and receive responses from the chatbot.
 - Allow users to exit the chat gracefully by typing 'quit'.
@@ -172,11 +170,11 @@ def mental_health_chatbot():
 
 ## **Framework and Libraries**:
 
-- Utilizes Streamlit for the user interface.
-- Employs Transformers library for the BERT model.
-- Integrates Azure Text Analytics for sentiment analysis.
-- Uses PyTorch for model handling and inference.
-- Incorporates MLflow for tracking experiments and logging interactions.
+- Utilizes `Streamlit` for the user interface.
+- Employs `Transformers` library for the `BERT` model.
+- Integrates `Azure Text Analytics` for sentiment analysis.
+- Uses `PyTorch` for model handling and inference.
+- Incorporates `MLflow` for tracking experiments and logging interactions.
   
 ## **Initialization**:
 
@@ -213,7 +211,7 @@ def mental_health_chatbot():
 
 ## **User Interaction**:
 
-- Initializes the Streamlit app with a title and description.
+- Initializes the `Streamlit` app with a title and description.
 - Manages conversation history using Streamlit session state.
 - Processes user input for sentiment analysis and intent prediction.
 - Generates and displays bot responses.
