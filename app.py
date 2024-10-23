@@ -1,5 +1,4 @@
-from flask import Flask, request, jsonify, session
-from flask_cors import CORS
+import streamlit as st
 from transformers import BertTokenizer, BertForSequenceClassification
 from azure.ai.textanalytics import TextAnalyticsClient
 from azure.core.credentials import AzureKeyCredential
@@ -10,15 +9,6 @@ import json
 import mlflow
 import mlflow.pytorch
 import secrets
-
-# Initialize Flask app
-app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
-# Configure server-side session storage (in a file system)
-app.config['SESSION_TYPE'] = 'filesystem'
-
-# Enable Flask session (for context-aware responses)
-app.secret_key = secrets.token_hex(16)  # Generates a random secret key
 
 # Azure Text Analytics credentials
 key = "3d2b9f93f2514509acf274e8dc77f04e"
@@ -48,18 +38,14 @@ def download_file_from_drive(drive_url, output_path):
 # Download model files if not present locally
 if not os.path.exists(model_path):
     os.makedirs(model_path, exist_ok=True)
-    print("Downloading model files...")
     for filename, url in MODEL_FILES.items():
         download_file_from_drive(url, os.path.join(model_path, filename))
 
 # Download tokenizer files if not present locally
 if not os.path.exists(tokenizer_path):
     os.makedirs(tokenizer_path, exist_ok=True)
-    print("Downloading tokenizer files...")
     for filename, url in TOKENIZER_FILES.items():
         download_file_from_drive(url, os.path.join(tokenizer_path, filename))
-
-
 
 # Load pre-trained model and tokenizer
 tokenizer = BertTokenizer.from_pretrained(tokenizer_path)
@@ -98,54 +84,44 @@ def get_response(intent, sentiment):
             return f"{intent_data['responses'][0]} (Sentiment: {sentiment})"
     return "Sorry, I don't understand."
 
+# Initialize Streamlit app
+st.title("Mental Health Chatbot")
+st.write("A chatbot powered by Azure Text Analytics and a BERT model.")
 
-@app.route('/chat', methods=['POST'])
-def chat():
-    print("Chat endpoint was called")
+# Session state to store conversation history
+if 'conversation_history' not in st.session_state:
+    st.session_state['conversation_history'] = []
 
-    # Ensure session history is initialized correctly
-    if 'conversation_history' not in session:
-        session['conversation_history'] = []
+# User input
+user_message = st.text_input("You:", "")
 
-    # Extract user input from POST request
-    data = request.get_json()
-    user_message = data.get('text')
-
+if user_message:
     # Sentiment analysis
     sentiment, confidence_scores = analyze_sentiment(user_message)
 
     # Intent prediction
     intent = predict_intent(user_message)
 
-    # Get the bot's response based on the intent
+    # Get bot response
     response = get_response(intent, sentiment)
 
-    # Append the conversation to the history
-    session['conversation_history'].append({'user': user_message, 'bot': response})
+    # Append conversation to history
+    st.session_state['conversation_history'].append({'user': user_message, 'bot': response})
 
-    # Make sure the session gets modified to retain the history
-    session.modified = True
-
-    # Ensure MLflow experiment is created or set it if it exists
+    # Log with MLflow
     experiment_name = 'Mental Health Chatbot'
     if not mlflow.get_experiment_by_name(experiment_name):
         mlflow.create_experiment(experiment_name)
     mlflow.set_experiment(experiment_name)
 
     mlflow.autolog()
-    # Log model interactions with MLflow
     with mlflow.start_run():
         mlflow.log_param("input_text", user_message)
         mlflow.log_param("predicted_intent", intent)
         mlflow.log_param("sentiment", sentiment)
         mlflow.pytorch.log_model(model, "bert_model")
 
-    # Return the bot's response and full conversation history
-    return jsonify({
-        "response": response,
-        "history": session['conversation_history']  # Returns the full history
-    })
-
-# Run the Flask app
-if __name__ == '__main__':
-    app.run(debug=True ,host='0.0.0.0', port=5001)
+# Display conversation history
+for chat in st.session_state['conversation_history']:
+    st.write(f"You: {chat['user']}")
+    st.write(f"Bot: {chat['bot']}")
