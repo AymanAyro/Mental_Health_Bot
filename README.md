@@ -7,6 +7,16 @@ The goal of this project is to develop a mental health chatbot named Pandora tha
 
 ##### Check It Out!: [Mental Health Bot Streamlit App ](https://mentalhealthbot-jt65ytr62h6hyt6zwiqklm.streamlit.app/)
 
+## Team Members
+
+| Name          |
+|---------------|
+| Ayman Saber   |
+| Mahmoud Nasr  |
+| Hossam Hussein|
+| Ahmed Saleh   |
+
+
 ## **Usage Instructions**:
 - Run the Application: To launch the chatbot application, navigate to the project directory and use the following command in the terminal:
  
